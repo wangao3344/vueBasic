@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内联样式定义</title>
+</head>
+
+<body>
+    <div class="container">
+        <div v-bind:style='{border:borderStyle,width:widthStyle,height:heightStyle}'></div>
+        <!-- 对象的方式引用 -->
+        <div v-bind:style='baseStyle'></div>
+        <!-- 数组的方式引用 -->
+        <div v-bind:style='[baseStyle, overRiddingStyle]'></div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el: '.container',
+            data: {
+                borderStyle: '1px solid pink',
+                widthStyle: '200px',
+                heightStyle: '200px',
+                baseStyle: {
+                    border: '1px solid pink',
+                    width: '200px',
+                    height: '200px',
+                },
+                overRiddingStyle: {
+                    border: '5px solid pink',
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

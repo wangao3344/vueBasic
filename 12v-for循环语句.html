@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for循环语句</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container" v-cloak>
+        <ul>
+            <!-- 通过key 属性的设置可以提高vue的性能 -->
+            <li :key='index' v-for='(item,index) in fruits'>
+                {{item}}
+            </li>
+        </ul>
+        <p :key=i v-for='(v,k,i) in person'>{{v+'---'+k+'----'+i}}</p>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el: '#container',
+            data: {
+                fruits: ['apple', 'banana', 'orange'],
+                person: {
+                    name: '周星驰',
+                    age: 57,
+                    sex: '男',
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

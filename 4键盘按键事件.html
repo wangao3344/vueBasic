@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div v-cloak>{{msg}}</div>
+        <div>
+            <input type="text" v-on:keyup.a='handle'>
+        </div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        // 设置对应编码的键盘值的变量
+        Vue.config.keyCodes.a = 65;
+        var vue = new Vue({
+            el: '#container',
+            data: {
+                msg: '我是数据'
+            },
+            methods: {
+                handle: function(event) {
+                    console.log(event.keyCode);
+
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

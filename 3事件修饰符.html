@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">
+        <div>
+            {{number}}
+        </div>
+        <div @click='handle'>
+            <button v-on:click.stop='handle2'>按钮</button>
+        </div>
+        <div>
+            <a href="https://www.baidu.com" @click.prevent='handle3'>百度</a>
+        </div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el: '.box',
+            data: {
+                number: 0
+            },
+            methods: {
+                handle: function() {
+                    this.number++
+                },
+                handle2: function(event) {
+                    // 阻止事件冒泡
+                    // event.stopPropagation()
+                },
+                handle3: function(event) {
+                    // 阻止事件的默认行为
+                    // event.preventDefault();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

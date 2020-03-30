@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定义类名</title>
+    <style>
+        .bgc {
+            background-color: pink;
+        }
+        
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div v-bind:class='[bgcClass,boxClass]'>{{msg}}</div>
+        <div>
+            <button v-on:click='handle'>切换</button>
+        </div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el: '.container',
+            data: {
+                msg: '我是爸爸',
+                bgcClass: 'bgc',
+                boxClass: 'box',
+            },
+            methods: {
+                handle: function() {
+                    this.boxClass = '';
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

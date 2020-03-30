@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab栏切换</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        img {
+            vertical-align: top;
+        }
+        
+        #app {
+            width: 500px;
+            margin: 100px auto;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .tab {
+            height: 50px;
+            border-radius: 5px;
+        }
+        
+        #app .tab li {
+            float: left;
+            text-align: center;
+            line-height: 50px;
+            width: 100px;
+            color: #fff;
+            background-color: pink;
+            border-right: 2px solid #fff;
+            cursor: pointer;
+        }
+        
+        .clearfix {
+            *zoom: 1;
+        }
+        
+        .clearfix::after {
+            content: '';
+            height: 0px;
+            display: block;
+            clear: both;
+            visibility: hidden;
+        }
+        
+        .box {
+            border: 1px solid #999;
+            margin-top: 10px;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        .remove {
+            display: none;
+        }
+        
+        .current {
+            background-color: yellowgreen !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <ul class="clearfix tab">
+            <li v-on:click='change(index)' :key='index' v-for='(item,index) in infor' v-bind:class="currentIndex===index? 'current':''">{{item.name}}</li>
+        </ul>
+        <div class="box">
+            <ul>
+                <li :key='item.id' v-for='(item,index) in infor' :class='currentIndex===index?"show":"remove"'><img v-bind:src=item.path></li>
+            </ul>
+        </div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                infor: [{
+                    id: '01',
+                    name: '苹果',
+                    path: './images/apple.png'
+                }, {
+                    id: '02',
+                    name: '柠檬',
+                    path: './images/lemon.png'
+                }, {
+                    id: '03',
+                    name: '橘子',
+                    path: './images/orange.png'
+                }],
+                currentIndex: 0,
+            },
+            methods: {
+                change: function(index) {
+                    this.currentIndex = index;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

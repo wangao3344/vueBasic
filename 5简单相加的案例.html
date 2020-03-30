@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单相加</title>
+    <style>
+        .container {
+            width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        input {
+            width: 300px;
+            line-height: 30px;
+            margin-left: 10px;
+            text-align: center;
+        }
+        
+        label {
+            font-weight: 700;
+        }
+        
+        button {
+            width: 60px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>计算器的简单相加</h3>
+        <p>
+            <label for="one">第一个数 :</label>
+            <input type="text " id="one" v-model='a'>
+        </p>
+        <p>
+            <label for="two">第二个数 :</label>
+            <input type="text " id="two" v-model='b'>
+        </p>
+        <p>
+            <button v-on:click='handle'>相加</button>
+        </p>
+        <p>
+            <label>计算结果 :</label>
+            <span v-text='result'></span>
+        </p>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script type="text/javascript">
+        var vue = new Vue({
+            el: '.container',
+            data: {
+                a: '',
+                b: '',
+                result: '',
+            },
+            methods: {
+                handle: function() {
+                    this.result = parseInt(this.a) + parseInt(this.b);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

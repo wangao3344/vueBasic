@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <div>{{num}}</div>
+        <div>
+            <input type="text" v-model='msg'>
+        </div>
+        <div>
+            <button v-on:click='num++'>{{num}}</button>
+            <!-- 如果传递参数 要想获取事件对象必须添加$event -->
+            <button @click='addNumber2(1,2,$event)'>{{num}}</button>
+            <!-- 如果不传递参数，默认参数event -->
+            <button v-on:click='addNumber'>按钮</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+        var vue = new Vue({
+            el: '#box',
+            data: {
+                msg: '我是数据',
+                num: 0
+            },
+            methods: {
+                addNumber: function(event) {
+                    this.num++;
+                    console.log(event.target.innerHTML);
+
+                },
+                addNumber2: function(p1, p2, event) {
+                    this.num++;
+                    console.log(event.target.innerHTML);
+
+                }
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>

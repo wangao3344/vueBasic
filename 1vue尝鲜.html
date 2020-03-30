@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>尝鲜</title>
+    <style>
+        [v-cloak] {
+            display: none
+        }
+    </style>
+</head>
+
+<body>
+    <div id='container'>
+        <div v-cloak>{{msg}}</div>
+        <div v-text='infor'></div>
+        <div v-html="mycss"></div>
+        <div v-pre>{{msg}}</div>
+        <div v-once>{{once}}</div>
+    </div>
+    <script type="text/javascript" src="./js/vue.js"></script>
+    <script type="text/javascript">
+        const vue = new Vue({
+            el: '#container',
+            data: {
+                msg: '你好！vue',
+                infor: '我是你的！',
+                mycss: '<h3>我对应的样式</h3>',
+                once: '我是响应一次'
+            }
+        });
+    </script>
+</body>
+
+</html>

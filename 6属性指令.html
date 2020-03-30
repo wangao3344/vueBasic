@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性指令</title>
+</head>
+
+<body>
+    <div id="box">
+        <!-- <a v-bind:href="url">链接</a> -->
+        <!-- 可以简写成 -->
+        <a :href="url">链接</a>
+        <button v-on:click='handle'>切换</button>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el: '#box',
+            data: {
+                url: 'http://www.baidu.com'
+            },
+            methods: {
+                handle: function() {
+                    this.url = 'http://www.jd.com'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

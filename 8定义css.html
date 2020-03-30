@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            border: 1px solid pink;
+            width: 200px;
+            height: 200px;
+        }
+        
+        .bgc {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div v-bind:class='{box:isShow,bgc:isShow}'></div>
+        <button v-on:click='change'>切换</button>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el: '.container',
+            data: {
+                isShow: true
+            },
+            methods: {
+                change: function() {
+                    this.isShow = !this.isShow;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
