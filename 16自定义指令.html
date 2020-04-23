@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义指令</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container" v-cloak>
+        <input type="text" v-model='infor' v-color='color' v-focus>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        // Vue.directive('color', {
+        //     bind: function(el, binding) {
+        //         console.log(binding.value);
+        //         el.style.backgroundColor = binding.value;
+        //     }
+        // });
+        var vue = new Vue({
+            el: '#container',
+            data: {
+                infor: '我是用户信息',
+                color: 'blue'
+            },
+            directives: {
+                color: {
+                    bind: function(el, binding) {
+                        console.log(binding.value);
+                        el.style.backgroundColor = binding.value;
+                    }
+                },
+                focus: {
+                    inserted: function(el) {
+                        el.focus();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
