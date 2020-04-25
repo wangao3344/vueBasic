@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类名开关</title>
+    <style>
+        .open {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #ccc;
+        }
+        
+        .backColor {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div v-bind:class={open:isOpen,backColor:isBackColor}>123</div>
+        <button v-on:click='change'>切换</button>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                isOpen: true,
+                isBackColor: true
+            },
+            methods: {
+                change: function() {
+                    this.isOpen = !this.isOpen;
+                    this.isBackColor = !this.isBackColor;
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>

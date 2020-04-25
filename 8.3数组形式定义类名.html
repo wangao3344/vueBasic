@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组形式定义类属性</title>
+    <style>
+        .open {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #ccc;
+        }
+        
+        .backColor {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div v-bind:class="[ openClass, backColorClass]">123</div>
+        <div v-bind:class="objClass">123</div>
+        <button v-on:click='change'>切换</button>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                openClass: 'open',
+                backColorClass: 'backColor',
+                objClass: ['open', 'backColor'],
+            },
+            methods: {
+                change: function() {
+                    this.openClass = '';
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>

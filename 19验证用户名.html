@@ -14,13 +14,37 @@
 
 <body>
     <div id="container">
-        <input type="text" v-model.lazy='uname'><span>用户名已注册</span>
+        <div>
+            <input type="text" v-model.lazy='uname'>
+            <span v-text='tip'></span>
+        </div>
     </div>
     <script src="./js/vue.js"></script>
     <script>
         var vue = new Vue({
             el: '#container',
-            uname: '',
+            data: {
+                uname: '',
+                tip: '',
+            },
+            methods: {
+                checkedName: function(name) {
+                    var that = this;
+                    setTimeout(function() {
+                        if (that.uname === 'admin') {
+                            that.tip = '用户名已存在'
+                        } else {
+                            that.tip = '用户名可用'
+                        }
+                    }, 2000);
+                }
+            },
+            watch: {
+                uname: function(val) {
+                    this.checkedName(val);
+                    this.tip = '正在验证用户名。。。。'
+                }
+            }
 
         });
     </script>

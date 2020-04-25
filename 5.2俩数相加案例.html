@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+        
+        .app {
+            width: 500px;
+            margin: 100px auto;
+        }
+        
+        ul li {
+            margin-top: 20px;
+        }
+        
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <form>
+            <ul>
+                <li>
+                    <label for="username">第一个数:</label>
+                    <input type="text" name="firstnumber" id="firstnumber" v-model='first'>
+                </li>
+                <li>
+                    <label for="pwd">第二个数:</label>
+                    <input type="text" id="secondnumber" v-model='second'>
+                </li>
+
+                <li>
+                    <button v-on:click.prevent='add'>相 加</button>
+                </li>
+                <li>
+                    结果为:<span v-cloak>{{result}}</span>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el: '.app',
+            data: {
+                first: '',
+                second: '',
+                result: '',
+            },
+            methods: {
+                add: function() {
+                    this.result = parseInt(this.first) + parseInt(this.second);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内联样式定义</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-bind:style="{width:widthStyle,height:heightStyle,border:borderStyle}"></div>
+        <div v-bind:style="boxStyle"></div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                widthStyle: '200px',
+                heightStyle: '400px',
+                borderStyle: '2px solid #ccc',
+                boxStyle: {
+                    width: '200px',
+                    height: '400px',
+                    border: '2px solid #ccc',
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

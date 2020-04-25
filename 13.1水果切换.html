@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水果切换</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        #container {
+            width: 500px;
+            margin: 100px auto;
+        }
+        
+        nav {
+            width: 453px;
+            height: 50px;
+            border: 2px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        nav ul li {
+            float: left;
+            height: 50px;
+            width: 150px;
+            text-align: center;
+            line-height: 50px;
+            background-color: pink;
+            color: #fff;
+            border-right: 1px solid #ccc;
+            cursor: pointer;
+        }
+        
+        .pic {
+            margin-top: 5px;
+        }
+        
+        .pic ul li {
+            display: none;
+        }
+        
+        .current {
+            display: block !important;
+        }
+        
+        .selection {
+            background-color: green !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='container'>
+        <nav>
+            <ul>
+                <li :key='index' v-for='(item,index) in fruit' v-text='item.name' v-bind:class="currentIndex===index? 'selection' : ''" @click='changeState(index)'></li>
+            </ul>
+        </nav>
+        <div class="pic">
+            <ul>
+                <li :key='item.id' v-for='(item,index) in fruit ' v-bind:class="currentIndex===index? 'current' : ''">
+                    <img v-bind:src=item.path>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script type="text/javascript">
+        var vue = new Vue({
+            el: '#container',
+            data: {
+                fruit: [{
+                    id: '01',
+                    name: '苹果',
+                    path: './images/apple.png'
+                }, {
+                    id: '02',
+                    name: '柠檬',
+                    path: './images/lemon.png'
+                }, {
+                    id: '03',
+                    name: '橘子',
+                    path: './images/orange.png'
+                }],
+                currentIndex: 0,
+            },
+            methods: {
+                changeState: function(index) {
+                    this.currentIndex = index;
+                }
+            }
+
+
+
+        });
+    </script>
+</body>
+
+</html>

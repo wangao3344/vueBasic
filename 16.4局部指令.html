@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>局部指令</title>
+</head>
+
+<body>
+    <div id='app'>
+        <div>
+            <input type="text" v-focus v-color='colors'>
+        </div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                colors: {
+                    color: 'pink'
+                }
+            },
+            directives: {
+                focus: {
+                    inserted: function(el) {
+                        el.focus();
+                    }
+                },
+                color: {
+                    bind: function(el, binding) {
+                        el.style.backgroundColor = binding.value.color;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘事件复习</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+        
+        .app {
+            width: 500px;
+            margin: 100px auto;
+        }
+        
+        ul li {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <form>
+            <ul>
+                <li>
+                    <label for="username">用户名:</label>
+                    <input type="text" name="username" id="username" v-model='uname' v-on:keyup.delete='deleteUname'>
+                </li>
+                <li>
+                    <label for="pwd">密　码:</label>
+                    <input type="password" id="pwd" v-model='pwd' v-on:keyup.enter='handleSubmit'>
+                </li>
+                <li>
+                    <label for="pwd">自定义:</label>
+                    <input type="text" v-on:keyup.a='zdy'>
+                </li>
+                <li>
+                    <button v-on:click.prevent='handleSubmit'>提交</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <script type="text/javascript" src="./js/vue.js"></script>
+    <script>
+        // 自定义按键修饰符
+        Vue.config.keyCodes.a = 65;
+        var vue = new Vue({
+            el: '.app',
+            data: {
+                uname: '',
+                pwd: '',
+            },
+            methods: {
+                handleSubmit: function() {
+                    console.log(this.uname + '=====' + this.pwd);
+
+                },
+                deleteUname: function() {
+                    this.uname = '';
+                },
+                zdy: function(event) {
+                    console.log(event.keyCode);
+
+                }
+
+            }
+        });
+    </script>
+</body>
+
+</html>
