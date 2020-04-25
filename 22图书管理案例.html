@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图书管理案例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #app {
+            width: 800px;
+            border: 2px solid #ccc;
+            height: 800px;
+            margin: 0 auto;
+        }
+        
+        table {
+            overflow: hidden;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        
+        table,
+        tr,
+        td {
+            height: 50px;
+            border: 1px dashed pink;
+        }
+        
+        th {
+            background-color: goldenrod
+        }
+        
+        td {
+            background-color: pink;
+            color: #fff;
+            height: 50px;
+            border: 1px solid #fff;
+        }
+        
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        span {
+            color: #999;
+        }
+        
+        .setting {
+            width: 500px;
+            margin: 0 auto;
+            background-color: goldenrod;
+            height: 50px;
+        }
+        
+        .setting input {
+            height: 30px;
+            outline: none;
+            width: 150px;
+            margin-top: 6px;
+        }
+        
+        .setting button {
+            width: 50px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="setting">
+            <label>编号:</label><input type="text" v-model='id' :disabled='flag'>
+            <label>名称:</label><input type="text" v-model='name'>
+            <button @click='add'>添加</button>
+        </div>
+        <table>
+
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>名称</th>
+                    <th>时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr :key='item.id' v-for='item in books'>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.publishTime}}</td>
+                    <td>
+                        <a href="javascript:;" @click.prevent='remove(item.id)'>删除</a>
+                        <span>|</span>
+                        <a href="javascript:;" @click.prevent='update(item.id)'>修改</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                books: [{
+                    id: 1,
+                    name: '三国演义',
+                    publishTime: '2020-04-24'
+                }, {
+                    id: 2,
+                    name: '水浒传',
+                    publishTime: '2020-04-24'
+                }, {
+                    id: 3,
+                    name: '西游记',
+                    publishTime: '2020-04-24'
+                }, {
+                    id: 4,
+                    name: '红楼梦',
+                    publishTime: '2020-04-24'
+                }],
+                id: '',
+                name: '',
+                flag: false,
+            },
+            methods: {
+                remove: function(id) {
+                    // var index = this.books.findIndex(function(item) {
+                    //     return item.id == id;
+                    // });
+                    // console.log(index);
+
+                    // this.books.splice(index, 1);
+                    this.books = this.books.filter((item) => {
+                        return item.id != id;
+                    })
+
+                },
+                update: function(id) {
+                    var newBook = this.books.filter(function(item) {
+                        return item.id == id;
+                    });
+                    this.name = newBook[0].name;
+                    this.id = newBook[0].id;
+                    this.flag = true
+
+                },
+                add: function() {
+                    //重用添加方法如果 禁用为true为修改，为false是添加
+                    if (this.flag) {
+                        this.books.some((item) => {
+                            if (item.id == this.id) {
+                                item.name = this.name;
+                                return true;
+                            }
+                        });
+                        this.flag = false;
+                        this.name = '';
+                        this.id = '';
+
+                    } else {
+                        var book = {};
+                        book.name = this.name;
+                        book.id = this.id;
+                        book.publishTime = '2020-04-24';
+                        this.books.push(book);
+                        this.name = '';
+                        this.id = '';
+                    }
+
+
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

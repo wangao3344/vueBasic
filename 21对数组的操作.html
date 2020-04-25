@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对数组的操作</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <input type="text" v-model='fruit'>
+            <button @click='add'>添加</button>
+            <button @click='remove'>删除</button>
+            <button @click='replace'>替换</button>
+        </div>
+        <ul>
+            <li :key='index' v-for='(item,index) in arr' v-text='item'></li>
+
+        </ul>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                fruit: '',
+                arr: ['apple', 'orange', 'banana'],
+            },
+            methods: {
+                add: function() {
+                    this.arr.push(this.fruit);
+                },
+                remove: function() {
+                    this.arr.pop();
+                },
+                replace: function() {
+                    this.arr = this.arr.slice(1);
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>
